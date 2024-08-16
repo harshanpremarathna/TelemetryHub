@@ -1,0 +1,20 @@
+﻿### This port map if run with docker-compose
+@Api_HostAddress = http://localhost:7847
+
+POST {{Api_HostAddress}}/observable/login
+Content-Type: application/json
+
+{
+  "Username":"John",
+  "Password":"Pwd123"
+}
+
+###
+
+GET {{Api_HostAddress}}/observable/process-multi-activity
+
+###
+
+GET {{Api_HostAddress}}/observable/process-single-activity
+
+###

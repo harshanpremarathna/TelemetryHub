@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  api:
+    image: ${DOCKER_REGISTRY-}api
+    container_name: api
+    build:
+      context: .
+      dockerfile: src/Api/Dockerfile
+    ports:
+      - 8081:8081
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://api.dashboard:18889
+    networks:
+     - otel
+
+  api.dashboard:
+    image: mcr.microsoft.com/dotnet/nightly/aspire-dashboard:latest
+    container_name: dashboard
+    ports:
+     - 18888:18888
+    networks:
+     - otel
+
+networks:
+  otel:
